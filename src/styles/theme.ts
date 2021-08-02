@@ -36,7 +36,7 @@ const colors: ThemeColorProps = {
 	danger5:'#be3637',
 	transparent: 'rgba(0, 0, 0, 0)',
 };
-const space: ThemeArrayProps = [0, 4, 8, 12, 16, 20, 24, 32, 36, 40];
+const space: ThemeArrayProps = [4, 8, 12, 16, 20, 24, 32, 36, 40];
 const fontSizes: ThemeArrayProps = [10, 12, 14, 16, 18, 24, 32, 42, 64];
 const radius: ThemeArrayProps = [4, 8, 12, 16];
 
