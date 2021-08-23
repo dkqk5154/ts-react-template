@@ -16,8 +16,10 @@ import theme from 'styles/theme';
 export type colorThemeProps = {
 	[key: string]: {
 		backgroundColor: string;
+		borderColor: string;
 		hoverBackgroundColor: string;
 		pressedBackgroundColor: string;
+		color: string;
 	};
 };
 
@@ -32,7 +34,6 @@ export type buttonLevelProps = {
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 	colorTheme?: keyof colorThemeProps;
 	width?: string;
-	isGhost?: boolean;
 	isActiveHover?: boolean;
 	border: string;
 	borderRadius: string | number;
@@ -40,11 +41,20 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 	[key: string]: any;
 }
 
-const colorThemems: colorThemeProps = {
+const colorThemes: colorThemeProps = {
 	blue: {
-		backgroundColor: theme.colors.primary4,
+		backgroundColor: theme.colors.primary3,
+		borderColor: 'none',
 		hoverBackgroundColor: theme.colors.primary4,
 		pressedBackgroundColor: theme.colors.primary4,
+		color: theme.colors.white,
+	},
+	blueGhost: {
+		backgroundColor: theme.colors.white,
+		borderColor: theme.colors.primary3,
+		hoverBackgroundColor: theme.colors.white,
+		pressedBackgroundColor: theme.colors.white,
+		color: theme.colors.primary3,
 	},
 };
 
@@ -87,61 +97,33 @@ const Button = styled.button<MultiTypes & ButtonProps>`
 		'px'};
 	height: ${({ level }) => buttonLevels[level].height}px;
 	background-color: ${({ colorTheme }) =>
-		colorTheme
-			? colorThemems[colorTheme].backgroundColor
-			: colorThemems['blue'].backgroundColor};
+		colorThemes[colorTheme].backgroundColor};
 	border: ${({ colorTheme, theme }) =>
-		colorTheme
-			? colorTheme === 'ghost' && 'background'
-				? '2px solid' + theme.colors.blue500
-				: '0px'
-			: '0px'};
-	color: ${({ colorTheme, theme }) =>
-		colorTheme
-			? colorTheme === 'ghost' && 'background'
-				? theme.colors.blue500
-				: theme.colors.white
-			: theme.colors.white};
+		colorThemes[colorTheme].borderColor === 'none'
+			? '0px'
+			: '2px solid' + colorThemes[colorTheme].borderColor};
+	color: ${({ colorTheme }) => colorThemes[colorTheme].color};
 	:hover {
 		background-color: ${({ colorTheme }) =>
-			colorTheme
-				? colorThemems[colorTheme].hoverBackgroundColor
-				: colorThemems['blue'].hoverBackgroundColor};
+			colorThemes[colorTheme].hoverBackgroundColor};
 		box-shadow: 0 0 6px
-			${({ colorTheme }) =>
-				colorTheme
-					? colorThemems[colorTheme].hoverBackgroundColor
-					: colorThemems['blue'].hoverBackgroundColor};
-		color: ${({ theme }) => theme.colors.white};
+			${({ colorTheme }) => colorThemes[colorTheme].hoverBackgroundColor};
+		color: ${({ colorTheme }) => colorThemes[colorTheme].color};
 	}
 	:disabled {
 		opacity: 40%;
 		:hover {
 			background-color: ${({ colorTheme }) =>
-				colorTheme
-					? colorThemems[colorTheme].backgroundColor
-					: colorThemems['blue'].backgroundColor};
-			color: ${({ colorTheme, theme }) =>
-				colorTheme
-					? colorTheme === 'ghost' && 'background'
-						? theme.colors.blue500
-						: theme.colors.white
-					: theme.colors.white};
+				colorThemes[colorTheme].backgroundColor};
+			color: ${({ colorTheme }) => colorThemes[colorTheme].color};
 			box-shadow: none;
 		}
 	}
 	:active {
 		background-color: ${({ colorTheme }) =>
-			colorTheme
-				? colorThemems[colorTheme].pressedBackgroundColor
-				: colorThemems['blue'].pressedBackgroundColor};
+			colorThemes[colorTheme].pressedBackgroundColor};
 		box-shadow: none;
-		color: ${({ colorTheme, theme }) =>
-			colorTheme
-				? colorTheme === 'ghost' && 'background'
-					? theme.colors.blue500
-					: theme.colors.white
-				: theme.colors.white};
+		color: ${({ colorTheme }) => colorThemes[colorTheme].color};
 	}
 	${typography}
 	${space}
@@ -151,7 +133,7 @@ const Button = styled.button<MultiTypes & ButtonProps>`
 `;
 
 Button.defaultProps = {
-	isGhost: false,
+	colorTheme: 'blue',
 	isActiveHover: true,
 	level: 1,
 };
@@ -185,7 +167,7 @@ export const TransparentButton = styled.button<
 	${layout}
 `;
 
-export type flatcolorThemeProps = {
+export type FlatColorThemeProps = {
 	[key in 'blue' | 'gray']: {
 		backgroundColor: string;
 		hoverBackgroundColor: string;
