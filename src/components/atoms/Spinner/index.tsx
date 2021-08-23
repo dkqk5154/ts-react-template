@@ -26,7 +26,7 @@ const Styled = {
 		height: ${props => props.size};
 		border: 0.35rem solid ${props => props.theme.colors.gray100};
 		border-radius: 50%;
-		border-top-color: ${props => props.theme.colors.company};
+		border-top-color: ${props => props.theme.colors.primary3};
 		animation: ${Keyframes.spinnerSpin} 1s ease-in-out infinite;
 	`,
 };

@@ -49,11 +49,11 @@ const Styled = {
 		cursor: pointer;
 		padding: 1rem;
 		font-weight: bold;
-		background-color: ${props => props.theme.colors.company};
+		background-color: ${props => props.theme.colors.primary3};
 		width: 100%;
 		background-color: ${props =>
 			props.isActive
-				? props.theme.colors.company
+				? props.theme.colors.primary3
 				: props.theme.colors.gray500};
 		font-size: 0.875rem;
 		width: 90%;

@@ -33,14 +33,14 @@ const Styled = {
 			${props =>
 				props.borderColor
 					? props.theme.colors[props.borderColor]
-					: props.theme.colors.company};
+					: props.theme.colors.primary3};
 		background-color: ${props =>
 			props.isActive
 				? props.theme.colors.white
-				: props.theme.colors.company};
+				: props.theme.colors.primary3};
 		color: ${props =>
 			props.isActive
-				? props.theme.colors.company
+				? props.theme.colors.primary3
 				: props.theme.colors.white};
 		border-radius: ${props =>
 			props.borderRadius
@@ -60,14 +60,8 @@ const Styled = {
 };
 
 const Toggle = (props: ToggleButtonsInterface) => {
-	const {
-		isOn,
-		onText,
-		offText,
-		onChange,
-		borderColor,
-		borderRadius,
-	} = props;
+	const { isOn, onText, offText, onChange, borderColor, borderRadius } =
+		props;
 
 	const handleChangeToggle = (e: boolean) => {
 		onChange(e);

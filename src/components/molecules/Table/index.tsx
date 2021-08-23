@@ -142,13 +142,13 @@ Table.defaultProps = {
 	`,
 	TableHeaderContainer: styled(GlobalStyled.Row)`
 		padding: ${({ theme }) => `${theme.space[2]}px ${theme.space[4]}px`};
-		background-color: ${props => props.theme.colors.company};
+		background-color: ${props => props.theme.colors.primary3};
 	`,
 	TableCell: styled(GlobalStyled.CenterCol)``,
 	TableCellContainer: styled(GlobalStyled.HeightRow)``,
 	TableCellRow: styled(GlobalStyled.Row)`
 		padding: ${({ theme }) => `${theme.space[2]}px ${theme.space[4]}px`};
-		border-bottom: 1px solid ${props => props.theme.colors.gray};
+		border-bottom: 1px solid ${props => props.theme.colors.gray4};
 	`,
 	headerInfos: [
 		{ key: 'header1', label: '헤더1' },
